@@ -113,11 +113,6 @@ export class LiteVimeoEmbed extends HTMLElement {
           cursor: pointer;
         }
 
-        // Hide missing image placeholder
-        #frame picture img:not([src]) {
-          visibility: hidden;
-        }
-
         #fallbackPlaceholder {
           object-fit: cover;
         }
@@ -185,7 +180,8 @@ export class LiteVimeoEmbed extends HTMLElement {
                width="1100"
                height="619"
                decoding="async"
-               loading="lazy">
+               loading="lazy"
+               style="visibility: hidden">
         </picture>
         <button class="lvo-playbtn"></button>
       </div>
@@ -285,6 +281,7 @@ export class LiteVimeoEmbed extends HTMLElement {
         this.domRefImg.fallback.src = posterUrlJpeg;
         this.domRefImg.fallback.setAttribute('aria-label', `${this.videoPlay}: ${this.videoTitle}`);
         this.domRefImg.fallback.setAttribute('alt', `${this.videoPlay}: ${this.videoTitle}`);
+        this.domRefImg.fallback.setAttribute('style', 'visibility: initial');
     }
     /**
      * Setup the Intersection Observer to load the iframe when scrolled into view
