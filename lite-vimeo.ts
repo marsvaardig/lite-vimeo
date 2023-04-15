@@ -318,14 +318,14 @@ export class LiteVimeoEmbed extends HTMLElement {
 
     // API is the video-id based
     // http://vimeo.com/api/v2/video/364402896.json
-    const apiUrl = `https://vimeo.com/api/v2/video/${this.videoId}.json`;
+    const apiUrl = `https://vimeo.com/api/oembed.json?url=https://vimeo.com/${this.videoId}`;
 
     // Now fetch the JSON that locates our placeholder from vimeo's JSON API
-    const apiResponse = (await (await fetch(apiUrl)).json())[0];
+    const apiResponse = (await (await fetch(apiUrl)).json());
 
     // Extract the image id, e.g. 819916979, from a URL like:
     // thumbnail_large: "https://i.vimeocdn.com/video/819916979_640.jpg"
-    const tnLarge = apiResponse.thumbnail_large;
+    const tnLarge = apiResponse.thumbnail_url;
     const imgId = (tnLarge.substr(tnLarge.lastIndexOf("/") + 1)).split("_")[0];
 
     // const posterUrlWebp =
