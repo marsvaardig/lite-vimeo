@@ -139,6 +139,11 @@ export class LiteVimeoEmbed extends HTMLElement {
           cursor: pointer;
         }
 
+        // Hide missing image placeholder
+        #frame picture img:not([src]) {
+          visibility: hidden;
+        }
+
         #fallbackPlaceholder {
           object-fit: cover;
         }
